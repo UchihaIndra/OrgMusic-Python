@@ -1,0 +1,20 @@
+import os
+from shutil import copy2
+source="C:\\Users\\yadava21\\Music\\Music"
+dest="C:\\Music"
+path_sep=os.path.sep
+if not os.path.exists(dest):
+    os.mkdir(dest)
+for f in os.listdir(source):
+    if f.endswith("mp3"):
+        song_name=f.split("-")
+        name=song_name[0]
+        if  os.path.exists(dest+path_sep+name):
+            src = source + path_sep + f
+            dst = dest + path_sep + name.strip()
+            copy2(src, dst, follow_symlinks=False)
+        else :
+            os.mkdir(dest + path_sep + name)
+            src = source + path_sep + f
+            dst = dest + path_sep + name.strip()
+            copy2(src, dst, follow_symlinks=False)
